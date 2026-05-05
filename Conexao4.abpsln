@@ -1,0 +1,56 @@
+{
+  "id": "7832ee05-bc4c-4acf-ab06-5379f8dd6841",
+  "creationTime": "05/01/2026 16:07:36 +00:00",
+  "template": "app",
+  "versions": {
+    "AbpFramework": "10.3.0",
+    "AbpStudio": "2.2.7",
+    "TargetDotnetFramework": "net10.0"
+  },
+  "modules": {
+    "Conexao4": {
+      "path": "Conexao4.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+      
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "2.2.7",
+    "creationTool": "ABP Studio UI",
+    "tiered": "false",
+    "runInstallLibs": "",
+    "useLocalReferences": "false",
+    "multiTenancy": "false",
+    "includeTests": "false",
+    "kubernetesConfiguration": "false",
+    "uiFramework": "blazor-server",
+    "mobileFramework": "none",
+    "distributedEventBus": "none",
+    "databaseProvider": "ef",
+    "runDbMigrator": "",
+    "databaseManagementSystem": "sqlite",
+    "separateTenantSchema": "false",
+    "createInitialMigration": "",
+    "theme": "leptonx-lite",
+    "themeStyle": "",
+    "themeMenuPlacement": "",
+    "mobileFramework": "none",
+    "publicWebsite": "false",
+    "socialLogin": "false",
+    "sampleCrudPage": "false",
+    "selectedLanguages": ["Portuguese (Brazil)", ],
+    "defaultLanguage": "Portuguese (Brazil)",
+    "createCommand": "abp new Conexao4 -t app --ui-framework blazor-server --database-provider ef --database-management-system sqlite --theme leptonx-lite --skip-migration  --skip-migrator  --no-tests --without-cms-kit --dont-run-install-libs --dont-run-bundling --no-multi-tenancy --no-social-logins -no-gdpr -no-openiddict-admin-ui -no-audit-logging -no-file-management -no-language-management -no-text-template-management"
+  }
+}

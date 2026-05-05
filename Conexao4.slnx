@@ -1,0 +1,16 @@
+<Solution>
+    <Configurations>
+        <Platform Name="Any CPU" />
+    </Configurations>
+    <Folder Name="/src/">
+        <Project Path="src/Conexao4.Domain/Conexao4.Domain.csproj" />
+        <Project Path="src/Conexao4.Application/Conexao4.Application.csproj" />
+        <Project Path="src/Conexao4.EntityFrameworkCore/Conexao4.EntityFrameworkCore.csproj" />
+        <Project Path="src/Conexao4.Domain.Shared/Conexao4.Domain.Shared.csproj" />
+        <Project Path="src/Conexao4.Application.Contracts/Conexao4.Application.Contracts.csproj" />
+        <Project Path="src/Conexao4.HttpApi/Conexao4.HttpApi.csproj" />
+        <Project Path="src/Conexao4.HttpApi.Client/Conexao4.HttpApi.Client.csproj" />
+        <Project Path="src/Conexao4.DbMigrator/Conexao4.DbMigrator.csproj" />
+        <Project Path="src/Conexao4.Blazor/Conexao4.Blazor.csproj" />
+    </Folder>
+</Solution>
