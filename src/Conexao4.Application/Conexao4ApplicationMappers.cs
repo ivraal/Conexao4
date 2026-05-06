@@ -1,7 +1,16 @@
+using Conexao4.Produtos;
 using Riok.Mapperly.Abstractions;
 using Volo.Abp.Mapperly;
 
 namespace Conexao4;
+
+[Mapper]
+public partial class ProdutoToProdutoDtoMapper : MapperBase<Produto, ProdutoDto>
+{
+    public override partial ProdutoDto Map(Produto source);
+
+    public override partial void Map(Produto source, ProdutoDto destination);
+}
 
 /*
  * You can add your own mappings here.

@@ -3,6 +3,7 @@ using System;
 using Conexao4.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Conexao4.Migrations
 {
     [DbContext(typeof(Conexao4DbContext))]
-    partial class Conexao4DbContextModelSnapshot : ModelSnapshot
+    [Migration("20260506025102_Created_Produto_Entity")]
+    partial class Created_Produto_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

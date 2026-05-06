@@ -12,6 +12,7 @@ using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
+using Conexao4.Produtos;
 
 namespace Conexao4.EntityFrameworkCore;
 
@@ -22,7 +23,7 @@ public class Conexao4DbContext :
     IIdentityDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-
+    public DbSet<Produto> Produtos { get; set; }
 
     #region Entities from the modules
 
@@ -69,9 +70,15 @@ public class Conexao4DbContext :
         builder.ConfigureIdentity();
         builder.ConfigureOpenIddict();
         builder.ConfigureBlobStoring();
-        
-        /* Configure your own tables/entities inside here */
 
+        /* Configure your own tables/entities inside here */
+        builder.Entity<Produto>(b =>
+        {
+            b.ToTable(Conexao4Consts.DbTablePrefix + "Produtos",
+                Conexao4Consts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.Nome).IsRequired().HasMaxLength(128);
+        });
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(Conexao4Consts.DbTablePrefix + "YourEntities", Conexao4Consts.DbSchema);
