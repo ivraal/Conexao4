@@ -33,7 +33,7 @@
                         <EntityActions TItem="ProdutoDto" EntityActionsColumn="@EntityActionsColumn">
                             <EntityAction TItem="ProdutoDto"
                                           Text="@L["Edit"]"
-                                          Clicked="() => OpenEditModalAsync(context)" />
+                                          Clicked="() => OpenEditModalAsync(context.Item)" />
                         </EntityActions>
                     </DisplayTemplate>
                 </DataGridEntityActionsColumn>
@@ -57,20 +57,14 @@
         <Form>
             <ModalHeader>
                 <ModalTitle>@L["Novo Produto"]</ModalTitle>
-                <CloseButton Clicked="CloseCreateModalAsync"/>
+                <CloseButton Clicked="CloseCreateModalAsync" />
             </ModalHeader>
             <ModalBody>
                 <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
-                    <Validation MessageLocalizer="@LH.Localize">
-                        <Field>
-                            <FieldLabel>@L["Name"]</FieldLabel>
-                            <TextInput @bind-Text="@NewEntity.Nome">
-                                <Feedback>
-                                    <ValidationError/>
-                                </Feedback>
-                            </TextInput>
-                        </Field>
-                    </Validation>
+                    <Field>
+                        <FieldLabel>@L["Nome"]</FieldLabel>
+                        <TextInput @bind-Value="@NewEntity.Nome" />
+                    </Field>
                     <Field>
                         <FieldLabel>@L["Preço"]</FieldLabel>
                         <NumericInput TValue="float" @bind-Value="NewEntity.Preco" />
@@ -79,11 +73,15 @@
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
-                        Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                        Clicked="CloseCreateModalAsync">
+                    @L["Cancel"]
+                </Button>
                 <Button Color="Color.Primary"
                         Type="@ButtonType.Submit"
                         PreventDefaultOnSubmit="true"
-                        Clicked="CreateEntityAsync">@L["Save"]</Button>
+                        Clicked="CreateEntityAsync">
+                    @L["Save"]
+                </Button>
             </ModalFooter>
         </Form>
     </ModalContent>
@@ -101,33 +99,31 @@
         <Form>
             <ModalHeader>
                 <ModalTitle>@EditingEntity.Nome</ModalTitle>
-                <CloseButton Clicked="CloseEditModalAsync"/>
+                <CloseButton Clicked="CloseEditModalAsync" />
             </ModalHeader>
             <ModalBody>
                 <Validations @ref="@EditValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
-                    <Validation MessageLocalizer="@LH.Localize">
-                        <Field>
-                            <FieldLabel>@L["Nome"]</FieldLabel>
-                            <TextInput @bind-Text="@EditingEntity.Nome">
-                                <Feedback>
-                                    <ValidationError/>
-                                </Feedback>
-                            </TextInput>
-                        </Field>
-                    </Validation>
+                    <Field>
+                        <FieldLabel>@L["Nome"]</FieldLabel>
+                        <TextInput @bind-Value="@EditingEntity.Nome" />
+                    </Field>
                     <Field>
                         <FieldLabel>@L["Preço"]</FieldLabel>
-                        <NumericInput TValue="float" @bind-Value="EditingEntity.Preco"/>
+                        <NumericInput TValue="float" @bind-Value="EditingEntity.Preco" />
                     </Field>
                 </Validations>
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
-                        Clicked="CloseEditModalAsync">@L["Cancelar"]</Button>
+                        Clicked="CloseEditModalAsync">
+                    @L["Cancelar"]
+                </Button>
                 <Button Color="Color.Primary"
                         Type="@ButtonType.Submit"
                         PreventDefaultOnSubmit="true"
-                        Clicked="UpdateEntityAsync">@L["Salvar"]</Button>
+                        Clicked="UpdateEntityAsync">
+                    @L["Salvar"]
+                </Button>
             </ModalFooter>
         </Form>
     </ModalContent>
