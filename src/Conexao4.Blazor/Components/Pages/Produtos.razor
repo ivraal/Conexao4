@@ -54,16 +54,16 @@
                     <Validation MessageLocalizer="@LH.Localize">
                         <Field>
                             <FieldLabel>@L["Name"]</FieldLabel>
-                            <TextEdit @bind-Text="@NewEntity.Nome">
+                            <TextInput @bind-Text="@NewEntity.Nome">
                                 <Feedback>
                                     <ValidationError/>
                                 </Feedback>
-                            </TextEdit>
+                            </TextInput>
                         </Field>
                     </Validation>
                     <Field>
                         <FieldLabel>@L["Preço"]</FieldLabel>
-                        <NumericEdit TValue="float" @bind-Value="NewEntity.Preco"/>
+                        <NumericInput TValue="float" @bind-Value="NewEntity.Preco" />
                     </Field>
                 </Validations>
             </ModalBody>
