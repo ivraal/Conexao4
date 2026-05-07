@@ -41,6 +41,21 @@ public class Conexao4MenuContributor : IMenuContributor
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenus.GroupName, 3);
 
+        context.Menu.AddItem(
+    new ApplicationMenuItem(
+        "Conexao4",
+        l["Menu:Produtos"],
+        icon: "fa fa-box"
+    ).AddItem(
+        new ApplicationMenuItem(
+            "Conexao4.Produtos",
+            l["Menu:Produtos"],
+            url: "/Produtos"
+        )
+    )
+);
         return Task.CompletedTask;
+
+
     }
 }

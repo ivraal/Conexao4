@@ -37,6 +37,20 @@
     "Unspecified": "Sistema",
     "SeeAllUsers": "Ver todos os usuários",
     "TakePhoto": "Tirar fotos",
-    "ChoosePhoto": "Escolher Foto"
+    "ChoosePhoto": "Escolher Foto",
+    "Menu:Produtos": "Produtos",
+    "Produtos": "Produtos",
+    "NovoProduto": "Novo Produto",
+    "NomeProduto": "Nome",
+    "CategoriaProduto": "Categoria",
+    "PrecoProduto": "Preço",
+    "DescricaoProduto": "Descrição",
+    "Disponivel": "Disponível",
+
+    "Categoria:Cafe": "Café",
+    "Categoria:BebidaGelada": "Bebida Gelada",
+    "Categoria:Salgado": "Salgado",
+    "Categoria:Doce": "Doce",
+    "Categoria:Combo": "Combo"
   }
 }

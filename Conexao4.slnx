@@ -1,7 +1,4 @@
 <Solution>
-    <Configurations>
-        <Platform Name="Any CPU" />
-    </Configurations>
     <Folder Name="/src/">
         <Project Path="src/Conexao4.Domain/Conexao4.Domain.csproj" />
         <Project Path="src/Conexao4.Application/Conexao4.Application.csproj" />
