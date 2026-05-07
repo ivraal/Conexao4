@@ -28,6 +28,16 @@
                   ShowPager="true"
                   PageSize="PageSize">
             <DataGridColumns>
+                <DataGridEntityActionsColumn TItem="ProdutoDto" @ref="@EntityActionsColumn">
+                    <DisplayTemplate>
+                        <EntityActions TItem="ProdutoDto" EntityActionsColumn="@EntityActionsColumn">
+                            <EntityAction TItem="ProdutoDto"
+                                          Text="@L["Edit"]"
+                                          Clicked="() => OpenEditModalAsync(context)" />
+                        </EntityActions>
+                    </DisplayTemplate>
+                </DataGridEntityActionsColumn>
+
                 <DataGridColumn TItem="ProdutoDto"
                                 Field="@nameof(ProdutoDto.Nome)"
                                 Caption="@L["Nome"]"></DataGridColumn>
@@ -85,3 +95,40 @@
         LocalizationResource = typeof(Conexao4Resource);
     }
 }
+<Modal @ref="@EditModal">
+    <ModalBackdrop />
+    <ModalContent IsCentered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@EditingEntity.Nome</ModalTitle>
+                <CloseButton Clicked="CloseEditModalAsync"/>
+            </ModalHeader>
+            <ModalBody>
+                <Validations @ref="@EditValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+                    <Validation MessageLocalizer="@LH.Localize">
+                        <Field>
+                            <FieldLabel>@L["Nome"]</FieldLabel>
+                            <TextInput @bind-Text="@EditingEntity.Nome">
+                                <Feedback>
+                                    <ValidationError/>
+                                </Feedback>
+                            </TextInput>
+                        </Field>
+                    </Validation>
+                    <Field>
+                        <FieldLabel>@L["Preço"]</FieldLabel>
+                        <NumericInput TValue="float" @bind-Value="EditingEntity.Preco"/>
+                    </Field>
+                </Validations>
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary"
+                        Clicked="CloseEditModalAsync">@L["Cancelar"]</Button>
+                <Button Color="Color.Primary"
+                        Type="@ButtonType.Submit"
+                        PreventDefaultOnSubmit="true"
+                        Clicked="UpdateEntityAsync">@L["Salvar"]</Button>
+            </ModalFooter>
+        </Form>
+    </ModalContent>
+</Modal>
