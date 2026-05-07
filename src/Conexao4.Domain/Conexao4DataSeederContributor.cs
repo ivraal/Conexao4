@@ -27,12 +27,36 @@ namespace Conexao4
                 new Produto
                 {
                     Nome = "Café",
-                    Preco = 19.84f
+                    Preco = 14.90f
                 },
                 autoSave: true
             );
+                await _produtoRepository.InsertAsync(
+            new Produto
+            {
+                Nome = "Salgado",
+                Preco = 8.90f
+            },
+            autoSave: true
+        );
+                await _produtoRepository.InsertAsync(
+            new Produto
+            {
+                Nome = "Chá",
+                Preco = 10.90f
+            },
+            autoSave: true
+        );
+                await _produtoRepository.InsertAsync(
+            new Produto
+            {
+                Nome = "Cappuccino",
+                Preco = 18.00f
+            },
+            autoSave: true
+        );
 
-            await _produtoRepository.InsertAsync(
+                await _produtoRepository.InsertAsync(
                 new Produto
                 {
                     Nome = "Chocolate",

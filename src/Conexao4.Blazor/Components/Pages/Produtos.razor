@@ -33,7 +33,7 @@
                         <EntityActions TItem="ProdutoDto" EntityActionsColumn="@EntityActionsColumn">
                             <EntityAction TItem="ProdutoDto"
                                           Text="@L["Edit"]"
-                                          Clicked="() => OpenEditModalAsync(context)" />
+                                          Clicked="() => OpenEditModalAsync(context.Item)" />
                         </EntityActions>
                     </DisplayTemplate>
                 </DataGridEntityActionsColumn>
@@ -63,7 +63,7 @@
                 <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
                     <Validation MessageLocalizer="@LH.Localize">
                         <Field>
-                            <FieldLabel>@L["Name"]</FieldLabel>
+                            <FieldLabel>@L["Nome"]</FieldLabel>
                             <TextInput @bind-Text="@NewEntity.Nome">
                                 <Feedback>
                                     <ValidationError/>
@@ -79,11 +79,11 @@
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
-                        Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                        Clicked="CloseCreateModalAsync">@L["Cancelar"]</Button>
                 <Button Color="Color.Primary"
                         Type="@ButtonType.Submit"
                         PreventDefaultOnSubmit="true"
-                        Clicked="CreateEntityAsync">@L["Save"]</Button>
+                        Clicked="CreateEntityAsync">@L["Salvar"]</Button>
             </ModalFooter>
         </Form>
     </ModalContent>
