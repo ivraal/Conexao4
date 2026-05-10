@@ -1,3 +1,4 @@
+using Conexao4.Pedidos;
 using Conexao4.Produtos;
 using Riok.Mapperly.Abstractions;
 using Volo.Abp.Mapperly;
@@ -20,6 +21,21 @@ public partial class AbpSolution1CreateUpdateProdutoDtoToProdutoMapper : MapperB
     public override partial void Map(ProdutoDto source, Produto destination);
 }
 
+[Mapper(RequiredMappingStrategy = RequiredMappingStrategy.Target)]
+public partial class AbpSolution1ItemPedidoToItemPedidoDtoMapper : MapperBase<ItemPedido, ItemPedidoDto>
+{
+    public override partial ItemPedidoDto Map(ItemPedido source);
+
+    public override partial void Map(ItemPedido source, ItemPedidoDto destination);
+}
+
+[Mapper(RequiredMappingStrategy = RequiredMappingStrategy.Target)]
+public partial class AbpSolution1CreateUpdateItemPedidoDtoToItemPedidoMapper : MapperBase<ItemPedidoDto, ItemPedido>
+{
+    public override partial ItemPedido Map(ItemPedidoDto source);
+
+    public override partial void Map(ItemPedidoDto source, ItemPedido destination);
+}
 
 /*
  * You can add your own mappings here.

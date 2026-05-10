@@ -26,6 +26,8 @@ public class Conexao4DbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<ItemPedido> ItemPedidos { get; set; }
+    public DbSet<Pedido> Pedidos { get; set; }
+
     #region Entities from the modules
 
     /* Notice: We only implemented IIdentityProDbContext 
@@ -91,6 +93,13 @@ public class Conexao4DbContext :
             b.Property(x => x.UserId).IsRequired();
             b.Property(x => x.ProdutoId).IsRequired();
             b.Property(x => x.Quantidade).IsRequired();
+        });
+
+        builder.Entity<Pedido>(b =>
+        {
+            b.ToTable(Conexao4Consts.DbTablePrefix + "Pedidos",
+                Conexao4Consts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
         });
         //builder.Entity<YourEntity>(b =>
         //{t

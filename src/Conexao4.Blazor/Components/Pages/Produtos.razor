@@ -99,13 +99,7 @@
         </Form>
     </ModalContent>
 </Modal>
-@code
-{
-    public Produtos() // Constructor
-    {
-        LocalizationResource = typeof(Conexao4Resource);
-    }
-}
+
 <Modal @ref="@EditModal">
     <ModalBackdrop />
     <ModalContent IsCentered="true">
@@ -149,3 +143,11 @@
         </Form>
     </ModalContent>
 </Modal>
+
+@code
+{
+    public Produtos() // Constructor
+    {
+        LocalizationResource = typeof(Conexao4Resource);
+    }
+}

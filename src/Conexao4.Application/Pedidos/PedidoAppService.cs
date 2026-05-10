@@ -1,23 +1,23 @@
-﻿using System;
+﻿using Conexao4.Pedidos;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace Conexao4.Produtos
+namespace Conexao4.Pedidos
 {
-    public class ProdutoAppService :
+    public class PedidoAppService :
         CrudAppService<
-            Produto, //The Produto entity
-            ProdutoDto, //Used to show Produtos
+            Pedido, //The Pedido entity
+            PedidoDto, //Used to show Pedidos
             int, //Primary key of the produto entity
             PagedAndSortedResultRequestDto //Used for paging/sorting
             >, //Used to create/update a produto
-        IProdutoAppService //implement the IProdutoAppService
+        IPedidoAppService //implement the IPedidoAppService
     {
-        public ProdutoAppService(IRepository<Produto, int> repository)
+        public PedidoAppService(IRepository<Pedido, int> repository)
             : base(repository)
         {
 

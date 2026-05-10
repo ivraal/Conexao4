@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -8,8 +9,8 @@ public interface IItemPedidoAppService :
     ICrudAppService< //Defines CRUD methods
         ItemPedidoDto, //Used to show Produtos
         int, //Primary key of the Produto entity
-        PagedAndSortedResultRequestDto, //Used for paging/sorting
-        ItemPedidoDto> //Used to create/update a Produto
+        PagedAndSortedResultRequestDto> //Used for paging/sorting
 {
-
+    Task AdicionarAoCarrinhoAsync(int produtoId);
+    Task FinalizarCarrinhoAsync();
 }
