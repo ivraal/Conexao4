@@ -100,6 +100,7 @@ public class Conexao4DbContext :
             b.ToTable(Conexao4Consts.DbTablePrefix + "Pedidos",
                 Conexao4Consts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.UserId).IsRequired();
         });
         //builder.Entity<YourEntity>(b =>
         //{t

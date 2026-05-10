@@ -7,6 +7,6 @@ namespace Conexao4.Pedidos
 {
     public class Pedido : AuditedAggregateRoot<int>
     {
-
+        public Guid UserId { get; set; }
     }
 }

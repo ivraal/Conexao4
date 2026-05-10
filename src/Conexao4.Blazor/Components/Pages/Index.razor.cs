@@ -25,12 +25,17 @@ public partial class Index
     protected IProdutoAppService ProdutoAppService { get; set; } = default!;
 
     [Inject]
+    protected IPedidoAppService PedidoAppService { get; set; } = default!;
+
+    [Inject]
     protected IItemPedidoAppService ItemPedidoAppService { get; set; } = default!;
 
     protected Modal CarrinhoModal { get; set; }
-
+    protected Modal PedidosModal { get; set; }
+    
     List<ProdutoDto> lProduto = new List<ProdutoDto>();
     List<ItemPedidoDto> lItemPedido = new List<ItemPedidoDto>();
+    List<PedidoDto> lPedido = new List<PedidoDto>();    
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -39,6 +44,7 @@ public partial class Index
             var prdProduto = await ProdutoAppService.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
             lProduto = prdProduto.Items.ToList();
 
+            await AtualizarPedidosAsync();
             await AtualizarCarrinhoAsync();
 
             await InvokeAsync(StateHasChanged);
@@ -66,6 +72,17 @@ public partial class Index
 
         var prdItemPedido = await ItemPedidoAppService.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
         lItemPedido = prdItemPedido.Items.ToList();
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task AtualizarPedidosAsync()
+    {
+        if (!CurrentUser.IsAuthenticated)
+            return;
+
+        var prdPedido = await PedidoAppService.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
+        lPedido = prdPedido.Items.ToList();
 
         await InvokeAsync(StateHasChanged);
     }
@@ -100,5 +117,46 @@ public partial class Index
     protected virtual async Task CloseCarrinhoModalAsync()
     {
         await CarrinhoModal.Hide();
+    }
+
+    protected virtual async Task OpenPedidosAsync()
+    {
+        try
+        {
+            // Mapper will not notify Blazor that binded values are changed
+            // so we need to notify it manually by calling StateHasChanged
+            await InvokeAsync(async () =>
+            {
+                StateHasChanged();
+                if (PedidosModal != null)
+                {
+                    await PedidosModal.Show();
+                }
+
+            });
+        }
+        catch (Exception ex)
+        {
+            await HandleErrorAsync(ex);
+        }
+    }
+
+    protected virtual async Task ClosePedidoModalAsync()
+    {
+        await PedidosModal.Hide();
+    }
+
+    protected virtual async Task FinalizarCarrinhoAsync()
+    {
+        try
+        {
+            await ItemPedidoAppService.FinalizarCarrinhoAsync();
+            await AtualizarCarrinhoAsync();
+            await AtualizarPedidosAsync();
+        }
+        catch (Exception ex)
+        {
+            await HandleErrorAsync(ex);
+        }
     }
 }

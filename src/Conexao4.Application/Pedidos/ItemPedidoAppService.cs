@@ -73,7 +73,7 @@ public class ItemPedidoAppService :
 
     public async Task FinalizarCarrinhoAsync()
     {
-        var pedido = await _pedidoAppService.CreateAsync(new PedidoDto());
+        var pedido = await _pedidoAppService.CreateAsync(new PedidoDto { UserId = CurrentUser.Id!.Value });
 
         var l = await base.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
         foreach (var item in l.Items)

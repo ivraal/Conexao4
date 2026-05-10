@@ -31,8 +31,40 @@
     </div>
     @if (CurrentUser.IsAuthenticated)
     {
+    <button class="btn btn-secondary" style="float: right;" @onclick="@OpenPedidosAsync">@L["Pedidos"]</button>
     <button class="btn btn-secondary" style="float: right;" @onclick="@OpenCarrinhoAsync">@L["Carrinho"]</button>
 }
+
+<Modal @ref="@PedidosModal">
+    <ModalBackdrop />
+    <ModalContent IsCentered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@L["Pedidos"]</ModalTitle>
+                <CloseButton Clicked="CloseCarrinhoModalAsync" />
+            </ModalHeader>
+            <ModalBody>
+                @foreach (var iPedido in lPedido)
+                {
+
+                    <div class="col-12">
+                        <div class="card flex-fill">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">@iPedido.Id</h5>      
+                            </div>
+                        </div>
+                    </div>
+                }
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary"
+                        Clicked="CloseCarrinhoModalAsync">
+                    @L["Cancel"]
+                </Button>
+            </ModalFooter>
+        </Form>
+    </ModalContent>
+</Modal>
 
 <Modal @ref="@CarrinhoModal">
     <ModalBackdrop />
@@ -53,7 +85,7 @@
                                 <h5 class="card-title">@iItemPedido.Produto.Nome</h5>
                                 <h5 class="card-title">@iItemPedido.Quantidade</h5>
                                 <div class="mt-auto">
-                                    <button class="btn btn-seconday" @onclick="@(() => RemoverDoCarrinhoAsync(iItemPedido.Id))">@L["Remover do Carrinho"]</button>
+                                    <button class="btn btn-secondary" @onclick="@(() => RemoverDoCarrinhoAsync(iItemPedido.Id))">@L["Remover do Carrinho"]</button>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +93,10 @@
                 }
             </ModalBody>
             <ModalFooter>
+                <Button Color="Color.Secondary"
+                        Clicked="FinalizarCarrinhoAsync">
+                    @L["Finalizar Carrinho"]
+                </Button>
                 <Button Color="Color.Secondary"
                         Clicked="CloseCarrinhoModalAsync">
                     @L["Cancel"]

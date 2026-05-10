@@ -8,5 +8,6 @@ namespace Conexao4.Pedidos
 {
     public class PedidoDto : AuditedEntityDto<int>
     {
+        public Guid UserId { get; set; }
     }
 }

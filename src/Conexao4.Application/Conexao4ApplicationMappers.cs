@@ -37,6 +37,22 @@ public partial class AbpSolution1CreateUpdateItemPedidoDtoToItemPedidoMapper : M
     public override partial void Map(ItemPedidoDto source, ItemPedido destination);
 }
 
+[Mapper(RequiredMappingStrategy = RequiredMappingStrategy.Target)]
+public partial class AbpSolution1PedidoToPedidoDtoMapper : MapperBase<Pedido, PedidoDto>
+{
+    public override partial PedidoDto Map(Pedido source);
+
+    public override partial void Map(Pedido source, PedidoDto destination);
+}
+
+[Mapper(RequiredMappingStrategy = RequiredMappingStrategy.Target)]
+public partial class AbpSolution1CreateUpdatePedidoDtoToPedidoMapper : MapperBase<PedidoDto, Pedido>
+{
+    public override partial Pedido Map(PedidoDto source);
+
+    public override partial void Map(PedidoDto source, Pedido destination);
+}
+
 /*
  * You can add your own mappings here.
  * [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.Target)]

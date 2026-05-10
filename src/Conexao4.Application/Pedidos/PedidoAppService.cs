@@ -1,7 +1,9 @@
 ﻿using Conexao4.Pedidos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -21,6 +23,15 @@ namespace Conexao4.Pedidos
             : base(repository)
         {
 
+        }
+
+        protected override async Task<IQueryable<Pedido>> CreateFilteredQueryAsync(PagedAndSortedResultRequestDto input)
+        {
+            var query = await base.CreateFilteredQueryAsync(input);
+
+            query = query.Where(x => x.UserId == CurrentUser.Id!.Value);
+
+            return query;
         }
     }
 }
