@@ -12,12 +12,12 @@ namespace Conexao4.Produtos
         CrudAppService<
             Produto, //The Produto entity
             ProdutoDto, //Used to show Produtos
-            Guid, //Primary key of the produto entity
+            int, //Primary key of the produto entity
             PagedAndSortedResultRequestDto //Used for paging/sorting
             >, //Used to create/update a produto
         IProdutoAppService //implement the IProdutoAppService
     {
-        public ProdutoAppService(IRepository<Produto, Guid> repository)
+        public ProdutoAppService(IRepository<Produto, int> repository)
             : base(repository)
         {
 

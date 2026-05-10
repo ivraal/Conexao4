@@ -12,9 +12,9 @@ namespace Conexao4
    public class ProdutoStoreDataSeederContributor
     : IDataSeedContributor, ITransientDependency
 {
-    private readonly IRepository<Produto, Guid> _produtoRepository;
+    private readonly IRepository<Produto, int> _produtoRepository;
 
-    public ProdutoStoreDataSeederContributor(IRepository<Produto, Guid> produtoRepository)
+    public ProdutoStoreDataSeederContributor(IRepository<Produto, int> produtoRepository)
     {
         _produtoRepository = produtoRepository;
     }

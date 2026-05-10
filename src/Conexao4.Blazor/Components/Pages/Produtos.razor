@@ -4,7 +4,7 @@
 @using Conexao4.Localization
 @using Volo.Abp.AspNetCore.Components.Web
 @inject AbpBlazorMessageLocalizerHelper<Conexao4Resource> LH
-@inherits AbpCrudPageBase<IProdutoAppService, ProdutoDto, Guid, PagedAndSortedResultRequestDto>
+@inherits AbpCrudPageBase<IProdutoAppService, ProdutoDto, int, PagedAndSortedResultRequestDto>
 
 <Card>
     <CardHeader>
@@ -69,20 +69,32 @@
                     <Field>
                         <FieldLabel>@L["Nome"]</FieldLabel>
                         <TextInput @bind-Value="@NewEntity.Nome" />
-                    </Field>
+                    </Field>   
                     <Field>
                         <FieldLabel>@L["Preço"]</FieldLabel>
                         <NumericInput TValue="float" @bind-Value="NewEntity.Preco" />
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["Descrição"]</FieldLabel>
+                        <InputTextArea @bind-Value="@NewEntity.Descricao" />
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["URL da Imagem"]</FieldLabel>
+                        <TextInput @bind-Value="@NewEntity.UrlImagem" />
                     </Field>
                 </Validations>
             </ModalBody>
             <ModalFooter>
                 <Button Color="Color.Secondary"
-                        Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                        Clicked="CloseCreateModalAsync">
+                    @L["Cancel"]
+                </Button>
                 <Button Color="Color.Primary"
                         Type="@ButtonType.Submit"
                         PreventDefaultOnSubmit="true"
-                        Clicked="CreateEntityAsync">@L["Save"]</Button>
+                        Clicked="CreateEntityAsync">
+                    @L["Save"]
+                </Button>
             </ModalFooter>
         </Form>
     </ModalContent>
@@ -111,6 +123,14 @@
                     <Field>
                         <FieldLabel>@L["Preço"]</FieldLabel>
                         <NumericInput TValue="float" @bind-Value="EditingEntity.Preco" />
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["Descrição"]</FieldLabel>
+                        <InputTextArea @bind-Value="@EditingEntity.Descricao" />
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["URL da Imagem"]</FieldLabel>
+                        <TextInput @bind-Value="@EditingEntity.UrlImagem" />
                     </Field>
                 </Validations>
             </ModalBody>

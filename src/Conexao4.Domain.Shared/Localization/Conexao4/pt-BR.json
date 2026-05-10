@@ -51,6 +51,11 @@
     "Categoria:BebidaGelada": "Bebida Gelada",
     "Categoria:Salgado": "Salgado",
     "Categoria:Doce": "Doce",
-    "Categoria:Combo": "Combo"
+    "Categoria:Combo": "Combo",
+    "Permission:Conexao4": "Conexao4",
+    "Permission:Produtos": "Produto Management",
+    "Permission:Produtos.Create": "Creating new Produtos",
+    "Permission:Produtos.Edit": "Editing the Produtos",
+    "Permission:Produtos.Delete": "Deleting the Produtos"
   }
 }

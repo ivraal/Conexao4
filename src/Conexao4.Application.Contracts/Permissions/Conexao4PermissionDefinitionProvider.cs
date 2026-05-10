@@ -5,18 +5,21 @@ using Volo.Abp.MultiTenancy;
 
 namespace Conexao4.Permissions;
 
-public class Conexao4PermissionDefinitionProvider : PermissionDefinitionProvider
+public class BookStorePermissionDefinitionProvider : PermissionDefinitionProvider
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(Conexao4Permissions.GroupName);
+        var bookStoreGroup = context.AddGroup(Conexao4Permissions.GroupName, L("Permission:Conexao4"));
 
-        //Define your own permissions here. Example:
-        //myGroup.AddPermission(Conexao4Permissions.MyPermission1, L("Permission:MyPermission1"));
+        //Produtos permissions
+        var produtosPermission = bookStoreGroup.AddPermission(Conexao4Permissions.Produtos.Default, L("Permission:Produtos"));
+        produtosPermission.AddChild(Conexao4Permissions.Produtos.Create, L("Permission:Produtos.Create"));
+        produtosPermission.AddChild(Conexao4Permissions.Produtos.Edit, L("Permission:Produtos.Edit"));
+        produtosPermission.AddChild(Conexao4Permissions.Produtos.Delete, L("Permission:Produtos .Delete"));
     }
 
-    private static LocalizableString L(string name)
+    private static LocalizableString L(string nome)
     {
-        return LocalizableString.Create<Conexao4Resource>(name);
+        return LocalizableString.Create<Conexao4Resource>(nome);
     }
 }

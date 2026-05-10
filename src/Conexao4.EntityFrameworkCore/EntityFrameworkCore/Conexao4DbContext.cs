@@ -13,6 +13,7 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Conexao4.Produtos;
+using Conexao4.Pedidos;
 
 namespace Conexao4.EntityFrameworkCore;
 
@@ -24,7 +25,7 @@ public class Conexao4DbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Produto> Produtos { get; set; }
-
+    public DbSet<ItemPedido> ItemPedidos { get; set; }
     #region Entities from the modules
 
     /* Notice: We only implemented IIdentityProDbContext 
@@ -78,9 +79,21 @@ public class Conexao4DbContext :
                 Conexao4Consts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.Nome).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Descricao).HasMaxLength(1024);
+            b.Property(x => x.UrlImagem).HasMaxLength(512);
+        });
+
+        builder.Entity<ItemPedido>(b =>
+        {
+            b.ToTable(Conexao4Consts.DbTablePrefix + "ItemPedidos",
+                Conexao4Consts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.UserId).IsRequired();
+            b.Property(x => x.ProdutoId).IsRequired();
+            b.Property(x => x.Quantidade).IsRequired();
         });
         //builder.Entity<YourEntity>(b =>
-        //{
+        //{t
         //    b.ToTable(Conexao4Consts.DbTablePrefix + "YourEntities", Conexao4Consts.DbSchema);
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
